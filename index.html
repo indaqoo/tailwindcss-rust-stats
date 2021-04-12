@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/tailwind.css">
+    <title>STRAFE - Player stats</title>
+    <style type="text/css">
+        ::-webkit-scrollbar {
+          width: 11px;
+          height: 11px;
+        }
+        ::-webkit-scrollbar-button {
+          width: 0px;
+          height: 0px;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #e1e1e1;
+          border: 0px none #ffffff;
+          border-radius: 0px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #ffffff;
+        }
+        ::-webkit-scrollbar-thumb:active {
+          background: #000000;
+        }
+        ::-webkit-scrollbar-track {
+          background: #666666;
+          border: 0px none #ffffff;
+          border-radius: 50px;
+        }
+        ::-webkit-scrollbar-track:hover {
+          background: #666666;
+        }
+        ::-webkit-scrollbar-track:active {
+          background: #333333;
+        }
+        ::-webkit-scrollbar-corner {
+          background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark ">
+  
+    <!-- dark theme toggle -->
+    <div class="fixed left-0 top-1/2 flex flex-col">
+        <button id="theme-mode" class="p-3 bg-blue-600 dark:bg-white text-white flex items-center focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- navigation here -->
+    <nav class="bg-white dark:bg-menu-main">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="flex justify-between">
+                <!-- logo -->
+                <div class="logo flex items-center ">
+                    <a href="#" class="py-5 focus:outline-none">
+                        <svg width="80" height="23" viewBox="0 0 80 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32.5424 15.5932H35.9322V18.9831H32.5424V15.5932Z" fill="#EF8829"/>
+                            <path d="M10.1694 8.81354H13.5593V18.983H10.1694V8.81354Z M0 5.42371H3.38983V8.81354H0V5.42371Z M0 8.81354H10.1695V12.2034H0V8.81354Z M0 2.03391H16.9492V5.42374H0V2.03391Z M0 15.5932H10.1695V18.9831H0V15.5932Z M20.8813 2.03391H27.661V5.42374H20.8813V2.03391Z M28.4745 5.42371H31.8644V18.983H28.4745V5.42371Z M28.4745 2.03391H48.8135V5.42374H28.4745V2.03391Z M48.8135 2.03391H52.2034V14.2373H48.8135V2.03391Z M38.6441 15.5932H52.2034V18.9831H38.6441V15.5932Z M38.6441 12.2034H42.0339V15.5932H38.6441V12.2034Z M52.8813 2.03391H56.2712V22.3729H52.8813V2.03391Z M56.2712 8.81354H61.5593V12.2034H56.2712V8.81354Z M66.4407 6.77966H69.8305V8.81356H66.4407V6.77966Z M65.0848 8.81354H80V12.2034H65.0848V8.81354Z M66.4407 12.2034H69.8305V18.9831H66.4407V12.2034Z M69.8305 15.5932H80V18.9831H69.8305V15.5932Z M56.2712 2.03391H80V5.42374H56.2712V2.03391Z M76.6102 5.42371H80.0001V7.4576H76.6102V5.42371Z M38.6441 8.81354H48.8136V12.2034H38.6441V8.81354Z M20.339 15.5932H27.1187V18.9831H20.339V15.5932Z M16.9492 0H20.339V18.9831H16.9492V0Z" fill="#333" class="fill-current dark:text-white"/>
+                        </svg>
+                    </a>
+                </div>
+                <!-- primary navigation -->
+                <div class="primary-nav hidden md:flex items-center text-sm font-medium">
+                    <a href="#" class="py-6 px-6 text-gray-600 dark:text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-menu-hoverDark dark:hover:text-white transition-colors duration-500 flex flex-col items-center gap-1 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover:text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                        </svg>
+                        Home
+                    </a>
+                    <a href="#" class="py-6 px-6 text-gray-600 dark:text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-menu-hoverDark dark:hover:text-white transition-colors duration-500 flex flex-col items-center gap-1 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover:text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd" />
+                        </svg>
+                        Banlist
+                    </a>
+                    <a href="index.html" class="py-6 px-6 text-white active dark:text-white bg-blueGray-600 dark:bg-menu-sub flex flex-col items-center gap-1 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd" />
+                        </svg>
+                        Statistics
+                    </a>
+                    <a href="#" class="py-6 px-4 text-gray-600 dark:text-gray-500 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-menu-hoverDark dark:hover:text-white transition-colors duration-500 flex flex-col items-center gap-1 group justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="h-4 w-4 text-gray-400 group-hover:text-blue-600">
+                            <path d="M40 12s-4.586-3.59-10-4l-.488.977C34.406 10.176 36.652 11.89 39 14c-4.047-2.066-8.04-4-15-4-6.96 0-10.953 1.934-15 4 2.348-2.11 5.02-4.016 9.488-5.023L18 8c-5.68.535-10 4-10 4s-5.121 7.426-6 22c5.16 5.953 13 6 13 6l1.64-2.184C13.856 36.848 10.716 35.121 8 32c3.238 2.45 8.125 5 16 5s12.762-2.55 16-5c-2.715 3.121-5.855 4.848-8.64 5.816L33 40s7.84-.047 13-6c-.879-14.574-6-22-6-22zM17.5 30c-1.934 0-3.5-1.79-3.5-4s1.566-4 3.5-4 3.5 1.79 3.5 4-1.566 4-3.5 4zm13 0c-1.934 0-3.5-1.79-3.5-4s1.566-4 3.5-4 3.5 1.79 3.5 4-1.566 4-3.5 4z" fill="currentColor"/>
+                        </svg>
+                        Discord
+                    </a>
+                </div>
+                <!-- mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                          </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- mobile navigation -->
+        <div class="mobile-menu hidden md:hidden bg-gray-200 dark:bg-menu-sub font-medium">
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-500 dark:hover:bg-menu-hover">Home</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-500 dark:hover:bg-menu-hover">Banlist</a>
+            <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-500 dark:hover:bg-menu-hover">Statistics</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-500 dark:hover:bg-menu-hover">Discord</a>
+        </div>
+    </nav>
+
+
+    <!-- breadcrumb -->
+    <nav aria-label="breadcrumb" class="bg-blueGray-600 dark:bg-menu-hover md:dark:bg-menu-sub">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="flex gap-3 text-sm">
+                <a class="flex gap-3 py-2 text-gray-300 dark:hover:text-gray-200 hover:text-white group transition-colors duration-500 focus:outline-none" href="#">Home <span class="group-hover:text-gray-400 text-gray-400">></span></a>
+                <a class="flex gap-3 py-2 text-white dark:text-gray-200 focus:outline-none" href="index.html" aria-current="page">Statistics</a>
+              </div>
+        </div>
+    </nav>
+
+
+    <!-- Alert -->
+    <div class="alert bg-blue-600">
+        <div class="max-w-6xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between flex-wrap">
+            <div class="w-0 flex-1 flex items-center">
+              <span class="flex p-2 rounded-lg bg-blue-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z" />
+                  </svg>
+              </span>
+              <p class="ml-3 font-medium text-white  truncate">
+                <span class="md:hidden">
+                    Score is calculated depending on victim's gear.
+                </span>
+                <span class="hidden md:inline">
+                    Score is calculated depending on victim's gear, the more geared he is, more points are given for a kill.
+                </span>
+              </p>
+            </div>
+            <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
+              <button type="button" class="close-alert -mr-1 flex p-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2">
+                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <!-- leaderboard -->
+    <section id="leaderboard">
+        <div class="bg-local  object-cover bg-no-repeat bg-center" style="background-image: url('./assets/images/background2.jpg');">
+            <div class="bg-white dark:bg-menu-main w-full h-full bg-opacity-80 dark:bg-opacity-90">
+                <div class="max-w-6xl mx-auto px-5 py-10">
+                    <div class="flex justify-between">
+                        <div class="first-place order-2 flex flex-col flex-1 gap-1 items-center">
+                            <span class="font-bold text-yellow-400 text-lg" >1st</span>
+                            <a href="stats-player.html" class="flex flex-col items-center">
+                                <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/5e/5e36e0a478c3e5f20b7895ba28e6cd347eadf5fb_full.jpg" alt="alldaybig profile picture" class="w-32 rounded-full">
+                                <h3 class="text-2xl font-semibold dark:text-white">Indaqoo</h3>
+                            </a>
+                            <h5 class="uppercase text-gray-600 dark:text-gray-500">score: 275</h5>
+                        </div>
+                        <div class="second-place order-1 flex flex-col flex-1 gap-1 items-center">
+                            <span class="font-bold text-yellow-800 text-lg" >2nd</span>
+                            <a href="stats-player.html" class="flex flex-col items-center">
+                                <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e31aa52d67e662437ec4975d88627b126efba212_full.jpg" alt="alldaybig profile picture" class="w-24 rounded-full">
+                                <h3 class="text-2xl font-semibold dark:text-white">alldaybig</h3>
+                            </a>
+                            <h5 class="uppercase text-gray-600 dark:text-gray-500">score: 123</h5>
+                        </div>
+                        <div class="third-place order-3 flex flex-col flex-1 gap-1 items-center">
+                            <span class="font-bold text-gray-500 text-lg" >3rd</span>
+                            <a href="stats-player.html" class="flex flex-col items-center">
+                                <img src="https://cdn.discordapp.com/avatars/329306950112247820/a5a30f808c5ac77de1349156eaec5e1f.png" alt="alldaybig profile picture" class="w-24 rounded-full">
+                                <h3 class="text-2xl font-semibold dark:text-white">Parker</h3>
+                            </a>
+                            <h5 class="uppercase text-gray-600 dark:text-gray-500">score: 62</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- player combat log-->
+    <section id="player-combat-log">
+        <div class="max-w-6xl mx-auto p-5">
+            <h3 class="text-center p-8 text-2xl uppercase dark:text-gray-400 ">Combat log</h3>
+            <div class="flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="border overflow-hidden border-b border-gray-200 dark:border-menu-hoverDark sm:rounded-lg">
+                      <table class="min-w-full divide-y divide-gray-200 dark:divide-menu-hoverDark">
+                        <thead class="bg-gray-50 dark:bg-menu-main">
+                          <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200">
+                              Rank
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200">
+                              Player
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200">
+                              Score
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200">
+                              Kills
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200">
+                              Deaths
+                            </th>
+                            <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Details</span>
+                              </th>
+                          </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-menu-sub divide-y divide-gray-200 dark:divide-menu-hoverDark ">
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-800" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                4
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                5
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                6
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                7
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                8
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                9
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap dark:text-gray-500">
+                                10
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <a href="#" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-500 ">Indaqoo</a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-400">275</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-500">
+                                244
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-500">
+                              30
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="stats-player.html" class="text-blue-600 hover:text-blue-900">View details</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="px-4 py-6 flex items-center justify-between sm:px-6">
+                <div class="flex-1 flex justify-between sm:hidden">
+                  <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500">
+                    Previous
+                  </a>
+                  <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500">
+                    Next
+                  </a>
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                  <div>
+                    <p class="text-sm text-gray-700 dark:text-gray-500">
+                      Showing
+                      <span class="font-medium">1</span>
+                      to
+                      <span class="font-medium">10</span>
+                      of
+                      <span class="font-medium">24</span>
+                      results
+                    </p>
+                  </div>
+                  <div>
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                      <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500">
+                        <span class="sr-only">Previous</span>
+                        <!-- Heroicon name: solid/chevron-left -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </a>
+                      <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        1
+                      </a>
+                      <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500">
+                        2
+                      </a>
+                      <a href="#" class="hidden md:inline-flex relative items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500">
+                        3
+                      </a>
+                      <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:border-menu-hoverDark dark:bg-menu-main dark:text-gray-500">
+                        <span class="sr-only" >Next</span>
+                        <!-- Heroicon name: solid/chevron-right -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </a>
+                    </nav>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white mt-10 dark:bg-menu-sub">
+        <div class="max-w-5xl mx-auto pt-10 pb-10 text-center">
+            <div class="copyrights text-gray-400 text-sm dark:text-gray-500">
+                <p>&copy; www.strafe.lv 2021, All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
